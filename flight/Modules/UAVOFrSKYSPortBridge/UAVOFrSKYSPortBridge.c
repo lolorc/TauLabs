@@ -397,6 +397,26 @@ static bool frsky_encode_acc(uint32_t *value, bool test_presence_only, uint32_t 
 	if (test_presence_only)
 		return true;
 
+#if defined(FRSKY_ANGLE_IN_ACC_FRAME)
+	AttitudeActualData attitude;
+	AttitudeActualGet(&attitude);
+
+	float att = 0;
+	switch (arg) {
+	case 0:
+	  att = attitude.Roll;
+	  break;
+	case 1:
+	  att = attitude.Pitch;
+	  break;
+	case 2:
+	  att = attitude.Yaw;
+	  break;
+	}
+
+	int32_t atti = (int32_t)(att * 100.0f);
+	*value = (uint32_t) atti;
+#else
 	float acc = 0;
 	switch (arg) {
 	case 0:
@@ -415,6 +435,7 @@ static bool frsky_encode_acc(uint32_t *value, bool test_presence_only, uint32_t 
 
 	int32_t frsky_acc = (int32_t) acc;
 	*value = (uint32_t) frsky_acc;
+#endif
 
 	return true;
 }
