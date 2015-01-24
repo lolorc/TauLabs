@@ -126,6 +126,11 @@ ConfigInputWidget::ConfigInputWidget(QWidget *parent) : ConfigTaskWidget(parent)
     addUAVObjectToWidgetRelation("ManualControlSettings","FlightModePosition",m_config->fmsModePos4,3,1,true);
     addUAVObjectToWidgetRelation("ManualControlSettings","FlightModePosition",m_config->fmsModePos5,4,1,true);
     addUAVObjectToWidgetRelation("ManualControlSettings","FlightModePosition",m_config->fmsModePos6,5,1,true);
+    addUAVObjectToWidgetRelation("ManualControlSettings","FlightModePosition",m_config->fmsModePos7,6,1,true);
+    addUAVObjectToWidgetRelation("ManualControlSettings","FlightModePosition",m_config->fmsModePos8,7,1,true);
+    addUAVObjectToWidgetRelation("ManualControlSettings","FlightModePosition",m_config->fmsModePos9,8,1,true);
+    addUAVObjectToWidgetRelation("ManualControlSettings","FlightModePosition",m_config->fmsModePos10,9,1,true);
+    addUAVObjectToWidgetRelation("ManualControlSettings","FlightModePosition",m_config->fmsModePos11,10,1,true);
     addUAVObjectToWidgetRelation("ManualControlSettings","FlightModeNumber",m_config->fmsPosNum);
 
     addUAVObjectToWidgetRelation("ManualControlSettings","Stabilization1Settings",m_config->fmsSsPos1Roll,"Roll");
@@ -1525,6 +1530,21 @@ void ConfigInputWidget::updatePositionSlider()
 
     switch(manualSettingsDataPriv.FlightModeNumber) {
     default:
+    case 11:
+        m_config->fmsModePos11->setEnabled(true);
+	// pass through
+    case 10:
+        m_config->fmsModePos10->setEnabled(true);
+	// pass through
+    case 9:
+        m_config->fmsModePos9->setEnabled(true);
+	// pass through
+    case 8:
+        m_config->fmsModePos8->setEnabled(true);
+	// pass through
+    case 7:
+        m_config->fmsModePos7->setEnabled(true);
+	// pass through
     case 6:
         m_config->fmsModePos6->setEnabled(true);
 	// pass through
@@ -1567,6 +1587,21 @@ void ConfigInputWidget::updatePositionSlider()
         m_config->fmsModePos6->setEnabled(false);
 	// pass through
     case 6:
+        m_config->fmsModePos7->setEnabled(false);
+	// pass through
+    case 7:
+        m_config->fmsModePos8->setEnabled(false);
+	// pass through
+    case 8:
+        m_config->fmsModePos9->setEnabled(false);
+	// pass through
+    case 9:
+        m_config->fmsModePos10->setEnabled(false);
+	// pass through
+    case 10:
+        m_config->fmsModePos11->setEnabled(false);
+	// pass through
+    case 11:
     default:
 	break;
     }
