@@ -195,6 +195,21 @@ ConfigInputWidget::ConfigInputWidget(QWidget *parent) : ConfigTaskWidget(parent)
         m_txAccess2->setSharedRenderer(m_renderer);
         m_txAccess2->setElementId("access2");
 
+        m_txAccess3 = new QGraphicsSvgItem();
+        m_txAccess3->setParentItem(m_txBackground);
+        m_txAccess3->setSharedRenderer(m_renderer);
+        m_txAccess3->setElementId("access3");
+
+        m_txAccess4 = new QGraphicsSvgItem();
+        m_txAccess4->setParentItem(m_txBackground);
+        m_txAccess4->setSharedRenderer(m_renderer);
+        m_txAccess4->setElementId("access4");
+
+        m_txAccess5 = new QGraphicsSvgItem();
+        m_txAccess5->setParentItem(m_txBackground);
+        m_txAccess5->setSharedRenderer(m_renderer);
+        m_txAccess5->setElementId("access5");
+
         m_txFlightMode = new QGraphicsSvgItem();
         m_txFlightMode->setParentItem(m_txBackground);
         m_txFlightMode->setSharedRenderer(m_renderer);
@@ -280,6 +295,24 @@ ConfigInputWidget::ConfigInputWidget(QWidget *parent) : ConfigTaskWidget(parent)
         orig=Matrix.mapRect(orig);
         m_txAccess2Orig.translate(orig.x(),orig.y());
         m_txAccess2->setTransform(m_txAccess2Orig,true);
+
+        orig=m_renderer->boundsOnElement("access3");
+        Matrix = m_renderer->matrixForElement("access3");
+        orig=Matrix.mapRect(orig);
+        m_txAccess3Orig.translate(orig.x(),orig.y());
+        m_txAccess3->setTransform(m_txAccess3Orig,true);
+
+        orig=m_renderer->boundsOnElement("access4");
+        Matrix = m_renderer->matrixForElement("access4");
+        orig=Matrix.mapRect(orig);
+        m_txAccess4Orig.translate(orig.x(),orig.y());
+        m_txAccess4->setTransform(m_txAccess4Orig,true);
+
+        orig=m_renderer->boundsOnElement("access5");
+        Matrix = m_renderer->matrixForElement("access5");
+        orig=Matrix.mapRect(orig);
+        m_txAccess5Orig.translate(orig.x(),orig.y());
+        m_txAccess5->setTransform(m_txAccess5Orig,true);
     }
     m_config->graphicsView->fitInView(m_txMainBody, Qt::KeepAspectRatio );
     m_config->graphicsView->setStyleSheet("background: transparent");
@@ -295,6 +328,9 @@ ConfigInputWidget::ConfigInputWidget(QWidget *parent) : ConfigTaskWidget(parent)
                         ManualControlSettings::CHANNELGROUPS_ACCESSORY0 <<
                         ManualControlSettings::CHANNELGROUPS_ACCESSORY1 <<
                         ManualControlSettings::CHANNELGROUPS_ACCESSORY2 <<
+                        ManualControlSettings::CHANNELGROUPS_ACCESSORY3 <<
+                        ManualControlSettings::CHANNELGROUPS_ACCESSORY4 <<
+                        ManualControlSettings::CHANNELGROUPS_ACCESSORY5 <<
                         ManualControlSettings::CHANNELGROUPS_ARMING;
 
     acroChannelOrder << ManualControlSettings::CHANNELGROUPS_THROTTLE <<
@@ -305,6 +341,9 @@ ConfigInputWidget::ConfigInputWidget(QWidget *parent) : ConfigTaskWidget(parent)
                         ManualControlSettings::CHANNELGROUPS_ACCESSORY0 <<
                         ManualControlSettings::CHANNELGROUPS_ACCESSORY1 <<
                         ManualControlSettings::CHANNELGROUPS_ACCESSORY2 <<
+                        ManualControlSettings::CHANNELGROUPS_ACCESSORY3 <<
+                        ManualControlSettings::CHANNELGROUPS_ACCESSORY4 <<
+                        ManualControlSettings::CHANNELGROUPS_ACCESSORY5 <<
                         ManualControlSettings::CHANNELGROUPS_ARMING;
 }
 void ConfigInputWidget::resetTxControls()
@@ -315,6 +354,9 @@ void ConfigInputWidget::resetTxControls()
     m_txAccess0->setTransform(m_txAccess0Orig,false);
     m_txAccess1->setTransform(m_txAccess1Orig,false);
     m_txAccess2->setTransform(m_txAccess2Orig,false);
+    m_txAccess3->setTransform(m_txAccess3Orig,false);
+    m_txAccess4->setTransform(m_txAccess4Orig,false);
+    m_txAccess5->setTransform(m_txAccess5Orig,false);
     m_txFlightMode->setElementId("flightModeCenter");
     m_txFlightMode->setTransform(m_txFlightModeCOrig,false);
     m_txArming->setElementId("armedswitchleft");
@@ -581,6 +623,9 @@ void ConfigInputWidget::wizardSetUpStep(enum wizardSteps step)
         accessoryDesiredObj0 = AccessoryDesired::GetInstance(getObjectManager(),0);
         accessoryDesiredObj1 = AccessoryDesired::GetInstance(getObjectManager(),1);
         accessoryDesiredObj2 = AccessoryDesired::GetInstance(getObjectManager(),2);
+        accessoryDesiredObj3 = AccessoryDesired::GetInstance(getObjectManager(),3);
+        accessoryDesiredObj4 = AccessoryDesired::GetInstance(getObjectManager(),4);
+        accessoryDesiredObj5 = AccessoryDesired::GetInstance(getObjectManager(),5);
         setTxMovement(nothing);
         m_config->wzText->setText(QString(tr("Please move all controls to their maximum extents on both directions and press next when ready.")));
         fastMdata();
@@ -1031,6 +1076,18 @@ void ConfigInputWidget::setMoveFromCommand(int command)
     {
         setTxMovement(moveAccess2);
     }
+    else if(command==ManualControlSettings::CHANNELNUMBER_ACCESSORY3)
+    {
+        setTxMovement(moveAccess3);
+    }
+    else if(command==ManualControlSettings::CHANNELNUMBER_ACCESSORY4)
+    {
+        setTxMovement(moveAccess4);
+    }
+    else if(command==ManualControlSettings::CHANNELNUMBER_ACCESSORY5)
+    {
+        setTxMovement(moveAccess5);
+    }
 
 }
 
@@ -1079,6 +1136,24 @@ void ConfigInputWidget::setTxMovement(txMovements movement)
         movePos=0;
         growing=true;
         currentMovement=moveAccess2;
+        animate->start(100);
+        break;
+    case moveAccess3:
+        movePos=0;
+        growing=true;
+        currentMovement=moveAccess3;
+        animate->start(100);
+        break;
+    case moveAccess4:
+        movePos=0;
+        growing=true;
+        currentMovement=moveAccess4;
+        animate->start(100);
+        break;
+    case moveAccess5:
+        movePos=0;
+        growing=true;
+        currentMovement=moveAccess5;
         animate->start(100);
         break;
     case moveFlightMode:
@@ -1168,6 +1243,27 @@ void ConfigInputWidget::moveTxControls()
     case moveAccess2:
         item=m_txAccess2;
         trans=m_txAccess2Orig;
+        limitMax=ACCESS_MAX_MOVE;
+        limitMin=ACCESS_MIN_MOVE;
+        move=horizontal;
+        break;
+    case moveAccess3:
+        item=m_txAccess3;
+        trans=m_txAccess3Orig;
+        limitMax=ACCESS_MAX_MOVE;
+        limitMin=ACCESS_MIN_MOVE;
+        move=horizontal;
+        break;
+    case moveAccess4:
+        item=m_txAccess4;
+        trans=m_txAccess4Orig;
+        limitMax=ACCESS_MAX_MOVE;
+        limitMin=ACCESS_MIN_MOVE;
+        move=horizontal;
+        break;
+    case moveAccess5:
+        item=m_txAccess5;
+        trans=m_txAccess5Orig;
         limitMax=ACCESS_MAX_MOVE;
         limitMin=ACCESS_MIN_MOVE;
         move=horizontal;
@@ -1262,6 +1358,12 @@ void ConfigInputWidget::moveTxControls()
         m_txAccess1->setTransform(trans.translate(movePos*10*ACCESS_MAX_MOVE/STICK_MAX_MOVE,0),false);
         trans=m_txAccess2Orig;
         m_txAccess2->setTransform(trans.translate(movePos*10*ACCESS_MAX_MOVE/STICK_MAX_MOVE,0),false);
+        trans=m_txAccess3Orig;
+        m_txAccess3->setTransform(trans.translate(movePos*10*ACCESS_MAX_MOVE/STICK_MAX_MOVE,0),false);
+        trans=m_txAccess4Orig;
+        m_txAccess4->setTransform(trans.translate(movePos*10*ACCESS_MAX_MOVE/STICK_MAX_MOVE,0),false);
+        trans=m_txAccess5Orig;
+        m_txAccess5->setTransform(trans.translate(movePos*10*ACCESS_MAX_MOVE/STICK_MAX_MOVE,0),false);
 
         if(auxFlag)
         {
@@ -1358,6 +1460,9 @@ void ConfigInputWidget::moveSticks()
     accessoryDesiredData0=accessoryDesiredObj0->getData();
     accessoryDesiredData1=accessoryDesiredObj1->getData();
     accessoryDesiredData2=accessoryDesiredObj2->getData();
+    accessoryDesiredData3=accessoryDesiredObj3->getData();
+    accessoryDesiredData4=accessoryDesiredObj4->getData();
+    accessoryDesiredData5=accessoryDesiredObj5->getData();
 
     // 0 for throttle is THROTTLE_NEUTRAL_FRACTION of the total range
     // here we map it from [-1,0,1] -> [0,THROTTLE_NEUTRAL_FRACTION,1]
@@ -1413,6 +1518,9 @@ void ConfigInputWidget::moveSticks()
     m_txAccess0->setTransform(QTransform(m_txAccess0Orig).translate(accessoryDesiredData0.AccessoryVal * ACCESS_MAX_MOVE * 10, 0), false);
     m_txAccess1->setTransform(QTransform(m_txAccess1Orig).translate(accessoryDesiredData1.AccessoryVal * ACCESS_MAX_MOVE * 10, 0), false);
     m_txAccess2->setTransform(QTransform(m_txAccess2Orig).translate(accessoryDesiredData2.AccessoryVal * ACCESS_MAX_MOVE * 10, 0), false);
+    m_txAccess3->setTransform(QTransform(m_txAccess3Orig).translate(accessoryDesiredData3.AccessoryVal * ACCESS_MAX_MOVE * 10, 0), false);
+    m_txAccess4->setTransform(QTransform(m_txAccess4Orig).translate(accessoryDesiredData4.AccessoryVal * ACCESS_MAX_MOVE * 10, 0), false);
+    m_txAccess5->setTransform(QTransform(m_txAccess5Orig).translate(accessoryDesiredData5.AccessoryVal * ACCESS_MAX_MOVE * 10, 0), false);
 }
 
 void ConfigInputWidget::dimOtherControls(bool value)
@@ -1425,6 +1533,9 @@ void ConfigInputWidget::dimOtherControls(bool value)
     m_txAccess0->setOpacity(opac);
     m_txAccess1->setOpacity(opac);
     m_txAccess2->setOpacity(opac);
+    m_txAccess3->setOpacity(opac);
+    m_txAccess4->setOpacity(opac);
+    m_txAccess5->setOpacity(opac);
     m_txFlightMode->setOpacity(opac);
     m_txArming->setOpacity(opac);
 }

@@ -64,7 +64,7 @@ public:
             wizardWelcome, wizardChooseMode, wizardChooseType, wizardIdentifySticks, wizardIdentifyCenter,
             wizardIdentifyLimits, wizardIdentifyInverted, wizardVerifyFailsafe, wizardFinish, wizardNone};
         enum txMode{mode1,mode2};
-        enum txMovements{moveLeftVerticalStick,moveRightVerticalStick,moveLeftHorizontalStick,moveRightHorizontalStick,moveAccess0,moveAccess1,moveAccess2,moveFlightMode,centerAll,moveAll,armingSwitch,nothing};
+        enum txMovements{moveLeftVerticalStick,moveRightVerticalStick,moveLeftHorizontalStick,moveRightHorizontalStick,moveAccess0,moveAccess1,moveAccess2,moveAccess3,moveAccess4,moveAccess5,moveFlightMode,centerAll,moveAll,armingSwitch,nothing};
         enum txMovementType{vertical,horizontal,jump,mix};
         enum txType {acro, heli};
         enum failsafeDetection {FS_AWAITING_CONNECTION, FS_AWAITING_FAILSAFE, FS_AWAITING_RECONNECT};
@@ -119,9 +119,15 @@ private:
         AccessoryDesired * accessoryDesiredObj0;
         AccessoryDesired * accessoryDesiredObj1;
         AccessoryDesired * accessoryDesiredObj2;
+        AccessoryDesired * accessoryDesiredObj3;
+        AccessoryDesired * accessoryDesiredObj4;
+        AccessoryDesired * accessoryDesiredObj5;
         AccessoryDesired::DataFields accessoryDesiredData0;
         AccessoryDesired::DataFields accessoryDesiredData1;
         AccessoryDesired::DataFields accessoryDesiredData2;
+        AccessoryDesired::DataFields accessoryDesiredData3;
+        AccessoryDesired::DataFields accessoryDesiredData4;
+        AccessoryDesired::DataFields accessoryDesiredData5;
         UAVObject::Metadata manualControlMdata;
         ManualControlSettings * manualSettingsObj;
         ManualControlSettings::DataFields manualSettingsData;
@@ -139,6 +145,9 @@ private:
         QGraphicsSvgItem *m_txAccess0;
         QGraphicsSvgItem *m_txAccess1;
         QGraphicsSvgItem *m_txAccess2;
+        QGraphicsSvgItem *m_txAccess3;
+        QGraphicsSvgItem *m_txAccess4;
+        QGraphicsSvgItem *m_txAccess5;
         QGraphicsSvgItem *m_txFlightMode;
         QGraphicsSvgItem *m_txArming;
         QGraphicsSvgItem *m_txBackground;
@@ -148,6 +157,9 @@ private:
         QTransform m_txAccess0Orig;
         QTransform m_txAccess1Orig;
         QTransform m_txAccess2Orig;
+        QTransform m_txAccess3Orig;
+        QTransform m_txAccess4Orig;
+        QTransform m_txAccess5Orig;
         QTransform m_txFlightModeCOrig;
         QTransform m_txFlightModeLOrig;
         QTransform m_txFlightModeROrig;
