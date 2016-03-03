@@ -13,6 +13,9 @@
 				<elementname>Accessory0</elementname>
 				<elementname>Accessory1</elementname>
 				<elementname>Accessory2</elementname>
+				<elementname>Accessory3</elementname>
+				<elementname>Accessory4</elementname>
+				<elementname>Accessory5</elementname>
 				<elementname>Arming</elementname>
 			</elementnames>
 			<!-- these options should match those in ReceiverActivity -->
@@ -55,6 +58,9 @@
 				<elementname>Accessory0</elementname>
 				<elementname>Accessory1</elementname>
 				<elementname>Accessory2</elementname>
+				<elementname>Accessory3</elementname>
+				<elementname>Accessory4</elementname>
+				<elementname>Accessory5</elementname>
 				<elementname>Arming</elementname>
 			</elementnames>
 		</field>
@@ -69,6 +75,9 @@
 				<elementname>Accessory0</elementname>
 				<elementname>Accessory1</elementname>
 				<elementname>Accessory2</elementname>
+				<elementname>Accessory3</elementname>
+				<elementname>Accessory4</elementname>
+				<elementname>Accessory5</elementname>
 				<elementname>Arming</elementname>
 			</elementnames>
 		</field>
@@ -83,6 +92,9 @@
 				<elementname>Accessory0</elementname>
 				<elementname>Accessory1</elementname>
 				<elementname>Accessory2</elementname>
+				<elementname>Accessory3</elementname>
+				<elementname>Accessory4</elementname>
+				<elementname>Accessory5</elementname>
 				<elementname>Arming</elementname>
 			</elementnames>
 		</field>
@@ -97,6 +109,9 @@
 				<elementname>Accessory0</elementname>
 				<elementname>Accessory1</elementname>
 				<elementname>Accessory2</elementname>
+				<elementname>Accessory3</elementname>
+				<elementname>Accessory4</elementname>
+				<elementname>Accessory5</elementname>
 				<elementname>Arming</elementname>
 			</elementnames>
 		</field>
