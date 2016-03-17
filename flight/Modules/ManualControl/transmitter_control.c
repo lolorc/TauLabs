@@ -128,6 +128,9 @@ int32_t transmitter_control_initialize()
 	/* should be done dynamically this includes not even registering it if not used */
 	AccessoryDesiredCreateInstance();
 	AccessoryDesiredCreateInstance();
+	AccessoryDesiredCreateInstance();
+	AccessoryDesiredCreateInstance();
+	AccessoryDesiredCreateInstance();
 
 	/* No pending control events */
 	pending_control_event = CONTROL_EVENTS_NONE;
