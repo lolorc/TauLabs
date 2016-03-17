@@ -328,9 +328,6 @@ ConfigInputWidget::ConfigInputWidget(QWidget *parent) : ConfigTaskWidget(parent)
                         ManualControlSettings::CHANNELGROUPS_ACCESSORY0 <<
                         ManualControlSettings::CHANNELGROUPS_ACCESSORY1 <<
                         ManualControlSettings::CHANNELGROUPS_ACCESSORY2 <<
-                        ManualControlSettings::CHANNELGROUPS_ACCESSORY3 <<
-                        ManualControlSettings::CHANNELGROUPS_ACCESSORY4 <<
-                        ManualControlSettings::CHANNELGROUPS_ACCESSORY5 <<
                         ManualControlSettings::CHANNELGROUPS_ARMING;
 
     acroChannelOrder << ManualControlSettings::CHANNELGROUPS_THROTTLE <<
@@ -341,9 +338,6 @@ ConfigInputWidget::ConfigInputWidget(QWidget *parent) : ConfigTaskWidget(parent)
                         ManualControlSettings::CHANNELGROUPS_ACCESSORY0 <<
                         ManualControlSettings::CHANNELGROUPS_ACCESSORY1 <<
                         ManualControlSettings::CHANNELGROUPS_ACCESSORY2 <<
-                        ManualControlSettings::CHANNELGROUPS_ACCESSORY3 <<
-                        ManualControlSettings::CHANNELGROUPS_ACCESSORY4 <<
-                        ManualControlSettings::CHANNELGROUPS_ACCESSORY5 <<
                         ManualControlSettings::CHANNELGROUPS_ARMING;
 }
 void ConfigInputWidget::resetTxControls()
@@ -623,9 +617,6 @@ void ConfigInputWidget::wizardSetUpStep(enum wizardSteps step)
         accessoryDesiredObj0 = AccessoryDesired::GetInstance(getObjectManager(),0);
         accessoryDesiredObj1 = AccessoryDesired::GetInstance(getObjectManager(),1);
         accessoryDesiredObj2 = AccessoryDesired::GetInstance(getObjectManager(),2);
-        accessoryDesiredObj3 = AccessoryDesired::GetInstance(getObjectManager(),3);
-        accessoryDesiredObj4 = AccessoryDesired::GetInstance(getObjectManager(),4);
-        accessoryDesiredObj5 = AccessoryDesired::GetInstance(getObjectManager(),5);
         setTxMovement(nothing);
         m_config->wzText->setText(QString(tr("Please move all controls to their maximum extents on both directions and press next when ready.")));
         fastMdata();
@@ -1460,9 +1451,6 @@ void ConfigInputWidget::moveSticks()
     accessoryDesiredData0=accessoryDesiredObj0->getData();
     accessoryDesiredData1=accessoryDesiredObj1->getData();
     accessoryDesiredData2=accessoryDesiredObj2->getData();
-    accessoryDesiredData3=accessoryDesiredObj3->getData();
-    accessoryDesiredData4=accessoryDesiredObj4->getData();
-    accessoryDesiredData5=accessoryDesiredObj5->getData();
 
     // 0 for throttle is THROTTLE_NEUTRAL_FRACTION of the total range
     // here we map it from [-1,0,1] -> [0,THROTTLE_NEUTRAL_FRACTION,1]
@@ -1518,9 +1506,6 @@ void ConfigInputWidget::moveSticks()
     m_txAccess0->setTransform(QTransform(m_txAccess0Orig).translate(accessoryDesiredData0.AccessoryVal * ACCESS_MAX_MOVE * 10, 0), false);
     m_txAccess1->setTransform(QTransform(m_txAccess1Orig).translate(accessoryDesiredData1.AccessoryVal * ACCESS_MAX_MOVE * 10, 0), false);
     m_txAccess2->setTransform(QTransform(m_txAccess2Orig).translate(accessoryDesiredData2.AccessoryVal * ACCESS_MAX_MOVE * 10, 0), false);
-    m_txAccess3->setTransform(QTransform(m_txAccess3Orig).translate(accessoryDesiredData3.AccessoryVal * ACCESS_MAX_MOVE * 10, 0), false);
-    m_txAccess4->setTransform(QTransform(m_txAccess4Orig).translate(accessoryDesiredData4.AccessoryVal * ACCESS_MAX_MOVE * 10, 0), false);
-    m_txAccess5->setTransform(QTransform(m_txAccess5Orig).translate(accessoryDesiredData5.AccessoryVal * ACCESS_MAX_MOVE * 10, 0), false);
 }
 
 void ConfigInputWidget::dimOtherControls(bool value)
